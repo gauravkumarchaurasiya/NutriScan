@@ -1,0 +1,49 @@
+stages:
+  data_ingestion:
+    cmd: python src/data/data_ingestion.py
+    deps:
+      - src/data/data_ingestion.py
+    outs:
+      - data/processed
+  preprocess:
+    cmd: python src/features/data_preprocess.py
+    deps:
+      - src/preprocess_data.py
+      - data/processed
+    outs:
+      - data/Preprocessed
+      - models/transformers/preprocessor.joblib
+  eda:
+    cmd: python src/visualization/visualize.py
+    deps:
+      - src/visualization/visualize.py
+      - data/Preprocessed
+    outs:
+      - reports/eda_outputs
+  feature_selection:
+    cmd: python src/features/feature_selection.py
+    deps:
+      - src/features/feature_selection.py
+      - data/Preprocessed
+    outs:
+      - data/FeatureSelected
+      - models/feature_selector/feature_selector.joblib
+  train:
+    cmd: python src/models/train_model.py
+    deps:
+      - src/models/train_model.py
+      - models/feature_selector/feature_selector.joblib
+      - models/transformers/preprocessor.joblib
+      - data/FeatureSelected
+    outs:
+      - reports/figures
+  build_docker_image:
+    cmd: |
+      docker build -t Nutri-Scan .
+    deps:
+      - Dockerfile
+      - requirements_docker.txt
+
+  run_docker_container:
+    cmd: |
+      docker run --rm Nutri-Scan

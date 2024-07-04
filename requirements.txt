@@ -1,0 +1,7 @@
+# local package
+-e .
+pandas
+numpy
+sklearn
+dvc
+requests

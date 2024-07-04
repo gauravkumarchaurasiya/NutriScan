@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Obesity Prediction Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h2 {
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .form-group button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4626a5;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .form-group button:hover {
+        background-color: #310ca2;
+      }
+      .prediction {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #dff0d8;
+        border: 1px solid #d4edda;
+        border-radius: 5px;
+        color: #3c763d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Obesity Prediction Form</h2>
+      <form action="/predict" method="post">
+        <div class="form-group">
+          <label for="Diabetes_Percentage_2008"
+            >Diabetes Percentage 2008:</label
+          >
+          <input
+            type="number"
+            step="0.01"
+            id="Diabetes_Percentage_2008"
+            name="Diabetes_Percentage_2008"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Diabetes_Percentage_2013"
+            >Diabetes Percentage 2013:</label
+          >
+          <input
+            type="number"
+            step="0.01"
+            id="Diabetes_Percentage_2013"
+            name="Diabetes_Percentage_2013"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Obesity_Percentage_2012">Obesity Percentage 2012:</label>
+          <input
+            type="number"
+            step="0.01"
+            id="Obesity_Percentage_2012"
+            name="Obesity_Percentage_2012"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Recreation_Facilities_2011"
+            >Recreation Facilities 2011:</label
+          >
+          <input
+            type="number"
+            step="1"
+            id="Recreation_Facilities_2011"
+            name="Recreation_Facilities_2011"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Recreation_Facilities_2016"
+            >Recreation Facilities 2016:</label
+          >
+          <input
+            type="number"
+            step="1"
+            id="Recreation_Facilities_2016"
+            name="Recreation_Facilities_2016"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Recreation_Facilities_per_1000_2011"
+            >Recreation Facilities per 1000 2011:</label
+          >
+          <input
+            type="number"
+            step="0.01"
+            id="Recreation_Facilities_per_1000_2011"
+            name="Recreation_Facilities_per_1000_2011"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Recreation_Facilities_per_1000_2016"
+            >Recreation Facilities per 1000 2016:</label
+          >
+          <input
+            type="number"
+            step="0.01"
+            id="Recreation_Facilities_per_1000_2016"
+            name="Recreation_Facilities_per_1000_2016"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Recreation_Facilities_Percent_Change_2011_16"
+            >Recreation Facilities Percent Change 2011-16:</label
+          >
+          <input
+            type="number"
+            step="0.01"
+            id="Recreation_Facilities_Percent_Change_2011_16"
+            name="Recreation_Facilities_Percent_Change_2011_16"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Recreation_Facilities_Per_1000_Pop_Percent_Change_2011_16"
+            >Recreation Facilities Per 1000 Pop Percent Change 2011-16:</label
+          >
+          <input
+            type="number"
+            step="0.01"
+            id="Recreation_Facilities_Per_1000_Pop_Percent_Change_2011_16"
+            name="Recreation_Facilities_Per_1000_Pop_Percent_Change_2011_16"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <button type="submit">Predict Obesity Percentage 2017</button>
+        </div>
+      </form>
+      {% if prediction is not none %}
+      <div class="prediction">
+        <h3>Predicted Obesity Percentage 2017: {{ prediction }}</h3>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
